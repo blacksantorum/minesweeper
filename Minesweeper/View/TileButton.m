@@ -21,7 +21,7 @@
 
 - (instancetype)initWithLocation:(NSIndexPath *)location
 {
-    if (self = [super initWithFrame:CGRectMake(20 + location.section * 35.0, 20 + location.row * 35.0, 33.0, 33.0)]) {
+    if (self = [super initWithFrame:CGRectMake(20 + location.section * 35.0, 40 + location.row * 35.0, 33.0, 33.0)]) {
         self.location = location;
     }
     return self;

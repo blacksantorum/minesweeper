@@ -12,6 +12,10 @@
 
 @property (nonatomic,strong) NSIndexPath *location;
 
+// add a location to go with our button for quick synchronization with the game object
+// also added initializer to set the Button's frame based on indexPath and clean up
+// the VC code a bit
+
 - (instancetype)initWithLocation:(NSIndexPath *)location;
 
 @end

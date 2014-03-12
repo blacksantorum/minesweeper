@@ -12,8 +12,14 @@
 
 @property NSInteger numberOfMines;
 
+// set all tiles to selected, show mines and adjacent counts
 - (void)endGame;
+
+// set mines randomly on the board
 - (void)setMines;
+
+// iterate through tiles, marking the amount of adjacent mines
+- (void)setAdjacentCounts;
 
 @end
 
@@ -29,7 +35,6 @@
 
 - (void)endGame
 {
-    // end the game by marking all tiles as selected
     for (NSArray *rowOfTiles in self.board) {
         for (Tile *t in rowOfTiles) {
             t.selected = YES;
@@ -40,6 +45,7 @@
 - (void)setMines
 {
     int mines = 0;
+    // pick a random indexPath and set a mine there, until the mine limit is reached
     while (mines < TOTAL_MINES) {
         NSIndexPath *path = [NSIndexPath indexPathForRow:arc4random_uniform(BOARD_SIZE) inSection:arc4random_uniform(BOARD_SIZE)];
         Tile *tile = [(NSArray *)[self.board objectAtIndex:path.row] objectAtIndex:path.section];
@@ -56,6 +62,7 @@
         for (int j = 0; j < BOARD_SIZE;j++) {
             Tile *tile = (Tile *)[(NSArray *)[self.board objectAtIndex:i] objectAtIndex:j];
             
+            // for each tile, look at every adjacent Tile and increment the adjacent mines count if that Tile has a mine
             NSInteger adjacentCount = 0;
             for (int row = i-1; row < i + 2; row++) {
                 if (row >= 0 && row < BOARD_SIZE) {
@@ -87,7 +94,10 @@
     if (tile.hasMine) {
         [self endGame];
         self.playerLost = YES;
-    } else if (!tile.adjacentMines) {
+    }
+    // if the tile has no adjacent mines, we must select all adjacent tiles, and continue on any other
+    // adjacent tiles recursively
+    else if (!tile.adjacentMines) {
         int i =  location.row;
         int j = location.section;
         for (int row = i-1; row < i + 2; row++) {

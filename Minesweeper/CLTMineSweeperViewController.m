@@ -24,6 +24,7 @@
 
 @implementation CLTMineSweeperViewController
 
+// lazy instantiaton of game object
 - (MineSweeperGame *)game
 {
     if (!_game) {
@@ -35,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // draw the board, storing TileButtons in an array for fast enumeration
     NSMutableArray *tileButtons = [NSMutableArray array];
     for (int i = 0; i < BOARD_SIZE; i++) {
         for (int j = 0; j < BOARD_SIZE; j++) {
@@ -61,6 +63,8 @@
     } else if (self.game.playerWon) {
         [self.resultLabel setText:@"You won!"];
     }
+    
+    // iterate over titleButtons, updating their state to jive with the game
     
     for (TileButton *tb in self.tileButtons) {
         Tile * tile = [self.game tileAtLocation:tb.location];
