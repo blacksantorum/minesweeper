@@ -21,6 +21,9 @@
 		EC0851E518CFCE87000FC69A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC0851C718CFCE87000FC69A /* UIKit.framework */; };
 		EC0851ED18CFCE87000FC69A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC0851EB18CFCE87000FC69A /* InfoPlist.strings */; };
 		EC0851EF18CFCE87000FC69A /* MinesweeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0851EE18CFCE87000FC69A /* MinesweeperTests.m */; };
+		EC0851FA18CFCF0B000FC69A /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0851F918CFCF0B000FC69A /* Tile.m */; };
+		EC0851FE18CFD010000FC69A /* MineSweeperGame.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0851FD18CFD010000FC69A /* MineSweeperGame.m */; };
+		EC08520418CFDC57000FC69A /* TileButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EC08520318CFDC57000FC69A /* TileButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,12 @@
 		EC0851EA18CFCE87000FC69A /* MinesweeperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MinesweeperTests-Info.plist"; sourceTree = "<group>"; };
 		EC0851EC18CFCE87000FC69A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EC0851EE18CFCE87000FC69A /* MinesweeperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinesweeperTests.m; sourceTree = "<group>"; };
+		EC0851F818CFCF0B000FC69A /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
+		EC0851F918CFCF0B000FC69A /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tile.m; sourceTree = "<group>"; };
+		EC0851FC18CFD010000FC69A /* MineSweeperGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineSweeperGame.h; path = Model/MineSweeperGame.h; sourceTree = "<group>"; };
+		EC0851FD18CFD010000FC69A /* MineSweeperGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineSweeperGame.m; path = Model/MineSweeperGame.m; sourceTree = "<group>"; };
+		EC08520218CFDC57000FC69A /* TileButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TileButton.h; path = View/TileButton.h; sourceTree = "<group>"; };
+		EC08520318CFDC57000FC69A /* TileButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TileButton.m; path = View/TileButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +121,12 @@
 		EC0851C918CFCE87000FC69A /* Minesweeper */ = {
 			isa = PBXGroup;
 			children = (
-				EC0851D218CFCE87000FC69A /* CLTMineSweeperAppDelegate.h */,
-				EC0851D318CFCE87000FC69A /* CLTMineSweeperAppDelegate.m */,
+				EC08520218CFDC57000FC69A /* TileButton.h */,
+				EC08520318CFDC57000FC69A /* TileButton.m */,
 				EC0851D518CFCE87000FC69A /* Main.storyboard */,
 				EC0851D818CFCE87000FC69A /* CLTMineSweeperViewController.h */,
 				EC0851D918CFCE87000FC69A /* CLTMineSweeperViewController.m */,
+				EC0851FB18CFCF0E000FC69A /* Model */,
 				EC0851DB18CFCE87000FC69A /* Images.xcassets */,
 				EC0851CA18CFCE87000FC69A /* Supporting Files */,
 			);
@@ -126,6 +136,8 @@
 		EC0851CA18CFCE87000FC69A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EC0851D218CFCE87000FC69A /* CLTMineSweeperAppDelegate.h */,
+				EC0851D318CFCE87000FC69A /* CLTMineSweeperAppDelegate.m */,
 				EC0851CB18CFCE87000FC69A /* Minesweeper-Info.plist */,
 				EC0851CC18CFCE87000FC69A /* InfoPlist.strings */,
 				EC0851CF18CFCE87000FC69A /* main.m */,
@@ -150,6 +162,17 @@
 				EC0851EB18CFCE87000FC69A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC0851FB18CFCF0E000FC69A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC0851FC18CFD010000FC69A /* MineSweeperGame.h */,
+				EC0851FD18CFD010000FC69A /* MineSweeperGame.m */,
+				EC0851F818CFCF0B000FC69A /* Tile.h */,
+				EC0851F918CFCF0B000FC69A /* Tile.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,8 +274,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC0851DA18CFCE87000FC69A /* CLTMineSweeperViewController.m in Sources */,
+				EC08520418CFDC57000FC69A /* TileButton.m in Sources */,
 				EC0851D018CFCE87000FC69A /* main.m in Sources */,
 				EC0851D418CFCE87000FC69A /* CLTMineSweeperAppDelegate.m in Sources */,
+				EC0851FE18CFD010000FC69A /* MineSweeperGame.m in Sources */,
+				EC0851FA18CFCF0B000FC69A /* Tile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
