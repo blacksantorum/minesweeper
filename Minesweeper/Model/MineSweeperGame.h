@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Tile.h"
+
 #define BOARD_SIZE 8
 #define TOTAL_MINES 10
 
@@ -16,10 +18,11 @@
 @property (nonatomic) BOOL playerWon;
 @property (nonatomic) BOOL playerLost;
 
+- (Tile *)tileAtLocation:(NSIndexPath *)location;
 - (void)revealLocationAt:(NSIndexPath *)location;
 
-- (IBAction)newGame:(id)sender;
-- (IBAction)validate:(id)sender;
-- (IBAction)cheat:(id)sender;
+- (void)newGame;
+- (void)validate;
+- (void)cheat;
 
 @end

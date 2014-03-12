@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MineSweeperGame.h"
 
 @interface CLTMineSweeperViewController : UIViewController
+
+@property (nonatomic,strong,readonly) MineSweeperGame *game;
 
 @end

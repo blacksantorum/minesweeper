@@ -121,11 +121,10 @@
 		EC0851C918CFCE87000FC69A /* Minesweeper */ = {
 			isa = PBXGroup;
 			children = (
-				EC08520218CFDC57000FC69A /* TileButton.h */,
-				EC08520318CFDC57000FC69A /* TileButton.m */,
 				EC0851D518CFCE87000FC69A /* Main.storyboard */,
 				EC0851D818CFCE87000FC69A /* CLTMineSweeperViewController.h */,
 				EC0851D918CFCE87000FC69A /* CLTMineSweeperViewController.m */,
+				EC08520518CFDC73000FC69A /* View */,
 				EC0851FB18CFCF0E000FC69A /* Model */,
 				EC0851DB18CFCE87000FC69A /* Images.xcassets */,
 				EC0851CA18CFCE87000FC69A /* Supporting Files */,
@@ -173,6 +172,15 @@
 				EC0851F918CFCF0B000FC69A /* Tile.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		EC08520518CFDC73000FC69A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EC08520218CFDC57000FC69A /* TileButton.h */,
+				EC08520318CFDC57000FC69A /* TileButton.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

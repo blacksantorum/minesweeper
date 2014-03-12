@@ -7,9 +7,10 @@
 //
 
 #import "MineSweeperGame.h"
-#import "Tile.h"
 
 @interface MineSweeperGame ()
+
+@property NSInteger numberOfMines;
 
 - (void)endGame;
 - (void)setMines;
@@ -17,6 +18,14 @@
 @end
 
 @implementation MineSweeperGame
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        [self newGame];
+    }
+    return self;
+}
 
 - (void)endGame
 {
@@ -41,18 +50,62 @@
     }
 }
 
+- (void)setAdjacentCounts
+{
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE;j++) {
+            Tile *tile = (Tile *)[(NSArray *)[self.board objectAtIndex:i] objectAtIndex:j];
+            
+            NSInteger adjacentCount = 0;
+            for (int row = i-1; row < i + 2; row++) {
+                if (row >= 0 && row < BOARD_SIZE) {
+                    for (int section = j-1; section < j + 2; section++) {
+                        if (section >= 0 && section < BOARD_SIZE) {
+                            if ([self tileAtLocation:[NSIndexPath indexPathForRow:row inSection:section]].hasMine) {
+                                adjacentCount++;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            tile.adjacentMines = adjacentCount;
+        }
+    }
+}
+
+- (Tile *)tileAtLocation:(NSIndexPath *)location
+{
+    return (Tile *)[(NSArray *)[self.board objectAtIndex:location.row] objectAtIndex:location.section];
+}
+
 - (void)revealLocationAt:(NSIndexPath *)location
 {
-    Tile *tile = [(NSArray *)[self.board objectAtIndex:location.row] objectAtIndex:location.section];
+    Tile *tile = [self tileAtLocation:location];
     tile.selected = YES;
     
     if (tile.hasMine) {
         [self endGame];
         self.playerLost = YES;
+    } else if (!tile.adjacentMines) {
+        int i =  location.row;
+        int j = location.section;
+        for (int row = i-1; row < i + 2; row++) {
+            if (row >= 0 && row < BOARD_SIZE) {
+                for (int section = j-1; section < j + 2; section++) {
+                    if (section >= 0 && section < BOARD_SIZE) {
+                        NSIndexPath *adjacentLocation = [NSIndexPath indexPathForRow:row inSection:section];
+                        if (![self tileAtLocation:adjacentLocation].selected) {
+                            [self revealLocationAt:adjacentLocation];
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
-- (IBAction)newGame:(id)sender
+- (void)newGame
 {
     NSMutableArray *boardArray = [NSMutableArray array];
     // create 8 rows of 8 tiles
@@ -64,17 +117,21 @@
         }
         [boardArray addObject:rowOfTiles];
     }
+    self.playerWon = NO;
+    self.playerLost = NO;
     self.board = boardArray;
     [self setMines];
+    [self setAdjacentCounts];
 }
 
-- (IBAction)validate:(id)sender
+- (void)validate
 {
     for (NSArray *rowOfTiles in self.board) {
         for (Tile *t in rowOfTiles) {
             // if any tiles are unselected and don't contain mines, validate failed
             if (!t.selected && !t.hasMine) {
                 self.playerLost = YES;
+                [self endGame];
                 break;
             }
         }
@@ -82,7 +139,7 @@
     }
 }
 
-- (IBAction)cheat:(id)sender
+- (void)cheat
 {
     for (NSArray *rowOfTiles in self.board) {
         for (Tile *t in rowOfTiles) {

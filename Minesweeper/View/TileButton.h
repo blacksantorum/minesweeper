@@ -10,4 +10,8 @@
 
 @interface TileButton : UIButton
 
+@property (nonatomic,strong) NSIndexPath *location;
+
+- (instancetype)initWithLocation:(NSIndexPath *)location;
+
 @end

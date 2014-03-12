@@ -12,5 +12,6 @@
 
 @property (nonatomic) BOOL selected;
 @property (nonatomic) BOOL hasMine;
+@property (nonatomic) NSInteger adjacentMines;
 
 @end
